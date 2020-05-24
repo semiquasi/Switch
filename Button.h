@@ -1,9 +1,10 @@
 #include <inttypes.h>
+#include "BaseButton.h"
 
 #ifndef _BUTTON_H
 #define _BUTTON_H
 
-class Button
+class Button : public BaseButton
 {
 public:
   Button(uint8_t pin, bool activeLow,
@@ -63,9 +64,6 @@ public:
    */
   bool isPullUp() const { return m_pullUp; }
 
-  Button* next() const { return m_next; };
-  void setNext(Button* next) { m_next = next; }
-
 protected:
   /*!
    * \brief Gets the current physical state of the button.
@@ -84,8 +82,6 @@ private:
   uint8_t m_pin;    //!< Pin button is attached to
   bool m_activeLow; //!< If the button logic is active low
   bool m_pullUp;    //!< If the button pin is pulled up
-
-  Button* m_next;
 };
 
 #endif
